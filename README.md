@@ -15,7 +15,7 @@
 
 <p align="center"><a href="README.zh.md">中文</a></p>
 
-Chorus is an agent harness — the infrastructure that wraps around LLM agents to manage session lifecycle, task state, sub-agent orchestration, observability, and failure recovery. It lets multiple AI Agents (PM, Developer, Admin) and humans collaborate through the full workflow from requirements to delivery.
+Chorus is an agent harness — the infrastructure that wraps around LLM agents to manage session lifecycle, task state, sub-agent orchestration, observability, and failure recovery. It lets multiple AI Agents (with fine-grained, configurable permissions) and humans collaborate through the full workflow from requirements to delivery.
 
 Inspired by the **[AI-DLC (AI-Driven Development Lifecycle)](https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/)** methodology. Core philosophy: **Reversed Conversation** — AI proposes, humans verify.
 
@@ -155,6 +155,7 @@ A Cmd+K command palette for searching across all 6 entity types (Tasks, Ideas, P
 - **Task DAG** — Dependency modeling, cycle detection, and interactive visualization
 - **Kanban** — Real-time task flow with Worker badges and agent presence
 - **Multi-Agent Collaboration** — Claude Code Agent Teams (Swarm Mode) for parallel execution
+- **Fine-Grained Agent Permissions** — 5 resources × 3 actions grid with preset + custom combinations ([details](docs/PERMISSIONS.md))
 - **Chorus Plugin** — Lifecycle hooks automate session create/close, heartbeats, and context injection
 - **Requirements Elaboration** — Structured Q&A rounds before proposal creation
 - **Proposal Approval Flow** — PM drafts, Admin approves, drafts materialize into real entities
@@ -180,7 +181,7 @@ A Cmd+K command palette for searching across all 6 entity types (Tasks, Ideas, P
 │  └───────────────────────────────────────────────────────────┘   │
 │                                                                  │
 │  ┌── API Layer ──────────────────────────────────────────────┐   │
-│  │  /api/mcp  — MCP HTTP Streamable (50+ tools, role-based)  │   │
+│  │  /api/mcp  — MCP Streaming (50+ tools, permission-gated)  │   │
 │  │  /api/*    — REST API (Web UI + SSE push)                 │   │
 │  └───────────────────────────────────────────────────────────┘   │
 │                                                                  │
@@ -193,8 +194,9 @@ A Cmd+K command palette for searching across all 6 entity types (Tasks, Ideas, P
 │  └───────────────────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────────────────┘
      ↑              ↑              ↑              ↑
-  PM Agent    Developer Agent  Admin Agent      Human
-   (LLM)         (LLM)          (LLM)        (Browser)
+  Agent w/      Agent w/       Agent w/         Human
+  PM perms   Developer perms  Admin perms     (Browser)
+   (LLM)         (LLM)          (LLM)
                      │
           ┌──────────▼──────────┐   ┌─────────────────────┐
           │  PostgreSQL + Prisma │   │  Redis (optional)   │
@@ -292,7 +294,7 @@ The interactive installer provisions VPC, Aurora Serverless v2, ElastiCache Serv
 
 ### Connect AI Agents
 
-The fastest path is the in-app setup wizard: open the Web UI, go to **Settings → Setup Guide → Open setup guide**, and follow the step-by-step instructions for your client (Claude Code, Codex, OpenClaw, or other agents). The wizard creates the API key for you, shows the exact commands, and walks through verifying the connection.
+The fastest path is the in-app setup wizard: open the Web UI, go to **Settings → Setup Guide → Open setup guide**, and follow the step-by-step instructions for your client (Claude Code, Codex, OpenCode, OpenClaw, or other agents). The wizard creates the API key for you, shows the exact commands, and walks through verifying the connection.
 
 If you'd rather read the full docs:
 
@@ -300,7 +302,10 @@ If you'd rather read the full docs:
 |--------|-------|
 | Claude Code | [CONNECT_CLAUDE_CODE.md](docs/CONNECT_CLAUDE_CODE.md) |
 | Codex CLI | [CONNECT_CODEX.md](docs/CONNECT_CODEX.md) |
+| OpenCode † | [CONNECT_OPENCODE.md](docs/CONNECT_OPENCODE.md) |
 | Other MCP agents (Cursor, Continue, custom, …) | [CONNECT_OTHER_AGENTS.md](docs/CONNECT_OTHER_AGENTS.md) |
+
+† OpenCode support is provided by the community-maintained [`opencode-chorus`](https://github.com/etnperlong/opencode-chorus) plugin (npm: [`opencode-chorus`](https://www.npmjs.com/package/opencode-chorus)), authored by [@etnperlong](https://github.com/etnperlong). Thanks!
 
 Create API Keys in the Web UI under **Settings → Agents → Create API Key**. Keys start with `cho_` and are shown only once.
 

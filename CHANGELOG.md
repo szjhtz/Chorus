@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.7.1] - 2026-05-04
+
+### Added
+- **OpenCode client install guide**: New OpenCode tab in the in-app Install Guide with a 3-step one-shot flow covering env setup, `install-opencode.sh` installer (idempotent JSON merge into `~/.config/opencode/opencode.json`, Bash 3.2 compatible, backup on write), and verify. Adds `docs/CONNECT_OPENCODE` (en + zh) and mirrors the new frame in `docs/design.pen`. (#242)
+
+### Changed
+- **Docs aligned with fine-grained agent permissions**: Sweep of README / CLAUDE.md / ARCHITECTURE / AUTH / CONNECT_* to replace references to the legacy `admin/pm/developer` role model with the 5×3 permission matrix shipped in 0.7.0. New `docs/PERMISSIONS.md` as the dedicated permission-model reference. (#241)
+
+---
+
 ## [0.7.0] - 2026-05-02
 
 ### Added
