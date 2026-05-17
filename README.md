@@ -36,6 +36,8 @@ The labels under each stage are the **permissions** an actor needs at that stage
 
 ## What's New
 
+**[v0.8.0](https://chorus-ai.dev/blog/chorus-v0.8.0-release/)** — OpenSpec-aware mode (Claude Code): auto-activates when an `openspec/` directory and the `openspec` CLI are both present, adds `/opsx/{explore,propose,apply,archive}` and a post-verify archive-trigger hook.
+
 **[v0.7.0](https://chorus-ai.dev/blog/chorus-v0.7.0-release/)** — Fine-grained agent permissions: 5 resources × 3 actions grid replaces the PM/Developer/Admin three-way choice, with presets + a Custom option for free combination.
 
 **[v0.6.7](https://chorus-ai.dev/blog/chorus-v0.6.7-release/)** — Chorus plugin for Codex CLI (one-command installer), workspace picker when one email belongs to multiple Companies, per-client connect guides.

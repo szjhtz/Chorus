@@ -27,6 +27,8 @@ Idea ──> Proposal ──> [Document + Task DAG] ──> Execute ──> Veri
 
 ## 最近更新
 
+**[v0.8.0](https://chorus-ai.dev/zh/blog/chorus-v0.8.0-release/)** — OpenSpec-aware 模式（仅 Claude Code）：当仓库下同时存在 `openspec/` 目录和 `openspec` CLI 时自动启用，新增 `/opsx/{explore,propose,apply,archive}` 与 task verify 后的 archive-trigger 钩子。
+
 **[v0.7.0](https://chorus-ai.dev/zh/blog/chorus-v0.7.0-release/)** — 细粒度 Agent 权限：5 类资源 × 3 个动作组成的网格，取代 PM / Developer / Admin 三选一。保留原有预设，新增 Custom 选项自由组合。
 
 **[v0.6.7](https://chorus-ai.dev/zh/blog/chorus-v0.6.7-release/)** — Codex CLI 版 Chorus 插件（一条命令装完）、同一邮箱属于多个 Company 时的工作区选择器、每种客户端的接入文档。
